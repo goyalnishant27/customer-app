@@ -1,141 +1,225 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class Groceries extends StatelessWidget {
-  const Groceries({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:vyavsay/controllers/category_service_controller.dart';
+import 'package:vyavsay/web_View_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
+class Groceries extends StatefulWidget {
+  var categoryServiceController = Get.find<CategoryServiceController>();
+  var categoryName;
+  Groceries(this.categoryName);
+
+  @override
+  State<Groceries> createState() => _GroceriesState();
+}
+
+class _GroceriesState extends State<Groceries> {
+  
+
+  @override
+  void initState(){
+    super.initState();
+    widget.categoryServiceController.getCategoryData();
+    // if (Platform.isAndroid) WebView.platform = AndroidWebView();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: const Icon(Icons.arrow_back),
-        iconTheme: const IconThemeData(
-          color: Colors.black,
-        ),
-        title: const Text(
-          "Grocery",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            height: 80,
-            alignment: Alignment.center,
-            child: Row(
-              children: [
-                Container(
-                  height: 45,
-                  width: 347,
-                  margin: const EdgeInsets.only(
-                    bottom: 15,
-                    left: 20,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xffC4C4C4).withOpacity(.30),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 3),
-                      SizedBox(
-                        width: 30,
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.grey.withOpacity(.50),
-                          size: 40,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   leading: const Icon(Icons.arrow_back),
+      //   iconTheme: const IconThemeData(
+      //     color: Colors.black,
+      //   ),
+      //   title: const Text(
+      //     "Grocery",
+      //     style: TextStyle(
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.black,
+      //     ),
+      //   ),
+      // ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.only(left: 20, top: 20),
+              child: Row(
+                children: [
+                  GestureDetector(onTap: (){
+                    Navigator.pop(context);
+                  }, child: Icon(Icons.arrow_back)),
+                  SizedBox(width: 10,),
+                   Text("${widget.categoryName}", style: TextStyle(fontSize: 16.0),),
+                ],
+              ),
+            ),
+            Container(
+              height: 80,
+              alignment: Alignment.center,
+              child: Row(
+                children: [
+                  Container(
+                    height: 45,
+                    width: MediaQuery.of(context).size.width * 0.91,
+                    margin: const EdgeInsets.only(
+                      bottom: 15,
+                      left: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xffC4C4C4).withOpacity(.30),
+                    ),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 3),
+                        SizedBox(
+                          width: 30,
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.grey.withOpacity(.50),
+                            size: 40,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      SizedBox(
-                        width: 300,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "Search for Store",
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(
-                              color: Colors.black,
+                        SizedBox(
+                          width: 7,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.79,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: "Search for Store",
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 104,
-                  width: 107,
-                  color: Color(0xffD9D9D9),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "supermart",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Tagore  Area",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Text(
-                      "Offer",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 60,
-                ),
-                Text(
-                  "Open",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff4CAF50),
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 25,
             ),
-          ),
-        ],
+            Container(
+              height: MediaQuery.of(context).size.height * 0.76,
+              width: MediaQuery.of(context).size.width * 0.98,
+              child: GetBuilder<CategoryServiceController>(
+                builder: (snapshot) {
+                  return ListView.builder(itemCount: snapshot.categoriesList.length, itemBuilder: (BuildContext context, int index){
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              WebViewFlutter(snapshot.categoriesList[index].storeLink)));
+                      },
+                      child: Padding(
+                      padding: const EdgeInsets.only(left: 16.0, bottom: 10.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Container(
+                          //   height: 104,
+                          //   width: 90,
+                          //   color: Color(0xffD9D9D9),
+                          // ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Image.network("https://myvyavsay.com/upload/store/${snapshot.categoriesList[index].storeImage}", width: 100, height: 100, errorBuilder:
+                                                    (context, error, stacktrace) {
+                                                  return ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.0),
+                                                    child: Container(
+                                                      height: 100,
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Text(
+                                  "${snapshot.categoriesList[index].businessName}",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                  maxLines: 3,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.29,
+                                child: Text(
+                                  "${snapshot.categoriesList[index].storeAddress}",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black.withOpacity(0.5),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Text(
+                                "Offer",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black.withOpacity(0.5),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: 60,
+                          ),
+                          Text(
+                            "Open",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff4CAF50),
+                            ),
+                          ),
+                        ],
+                      ),
+                                      ),
+                    );
+                  });
+                }
+              ),
+            )
+            
+          ],
+        ),
       ),
     );
   }

@@ -35,7 +35,7 @@ class _WelcomeState extends State<Welcome> {
                     MaterialPageRoute(
                         builder:
                             (context) =>
-                            OTPPage()));
+                            OTPPage(mobileNoController.text)));
     }else{
       Get.snackbar("Login Failed", "Something went wrong", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
     }

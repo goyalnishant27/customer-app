@@ -14,7 +14,8 @@ import 'package:vyavsay/welcome/components/welcome_button.dart';
 import '../login_services/login_service.dart';
 
 class OTPPage extends StatefulWidget {
-  const OTPPage({Key? key}) : super(key: key);
+  var mobileNumber;
+  OTPPage(this.mobileNumber);
 
   @override
   State<OTPPage> createState() => _OTPPageState();
@@ -107,7 +108,7 @@ class _OTPPageState extends State<OTPPage> {
             height: 10,
           ),
           Text(
-            "+919982914051",
+            "+91${widget.mobileNumber}",
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),

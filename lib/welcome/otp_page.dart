@@ -3,11 +3,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vyavsay/layout_home.dart';
 import 'package:vyavsay/welcome/components/welcome_button.dart';
+
+import '../login_services/login_service.dart';
 
 class OTPPage extends StatefulWidget {
   const OTPPage({Key? key}) : super(key: key);
@@ -17,6 +21,10 @@ class OTPPage extends StatefulWidget {
 }
 
 class _OTPPageState extends State<OTPPage> {
+
+  LogInService logInService = LogInService();
+  TextEditingController otpController = TextEditingController();
+
   int start = 30;
   bool wait = false;
   void startTimer() {
@@ -33,6 +41,24 @@ class _OTPPageState extends State<OTPPage> {
         });
       }
     });
+  }
+
+  onConfirmOfOtp() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var userType = sharedPreferences.getInt('userType');
+    var mobileNo = sharedPreferences.getString('mobileNo');
+    var otpConfirmResult =  await logInService.confirm(phone: mobileNo!, otp: otpController.text, userType: userType.toString());
+    if(otpConfirmResult != ""){
+      sharedPreferences.setString('userId', otpConfirmResult['data']['id']);
+      Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder:
+                            (context) =>
+                            LayoutHome()));
+    }else{
+      Get.snackbar("Login Failed", "Entered Wrong Otp", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
+    }
   }
 
   @override
@@ -92,6 +118,7 @@ class _OTPPageState extends State<OTPPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: PinCodeTextField(
+              controller: otpController,
               keyboardType: TextInputType.number,
               length: 6,
               appContext: context,
@@ -147,12 +174,7 @@ class _OTPPageState extends State<OTPPage> {
             width: 330.w,
             child: WelcomeButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder:
-                            (context) =>
-                            LayoutHome()));
+                onConfirmOfOtp();
               },
               text: "Continue",
             ),

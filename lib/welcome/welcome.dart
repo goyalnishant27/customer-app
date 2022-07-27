@@ -2,15 +2,44 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vyavsay/login_services/login_service.dart';
 import 'package:vyavsay/welcome/components/welcome_button.dart';
 import 'package:vyavsay/welcome/otp_page.dart';
 
-class Welcome extends StatelessWidget {
+class Welcome extends StatefulWidget {
 //   final maskFormatter =  MaskTextInputFormatter(
 //   mask: '+## #####-#####',
 // );
 
   const Welcome({Key? key}) : super(key: key);
+
+  @override
+  State<Welcome> createState() => _WelcomeState();
+}
+
+class _WelcomeState extends State<Welcome> {
+
+  TextEditingController mobileNoController = TextEditingController();
+  LogInService logInService = LogInService();
+
+  onClickOfLogIn() async {
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var logInResult = await logInService.signup(name: "Sridhar", phone: mobileNoController.text);
+    if(logInResult != ""){
+      sharedPreferences.setString('mobileNo', logInResult['mobile_number']);
+      sharedPreferences.setInt('userType', logInResult['user_type']);
+      Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder:
+                            (context) =>
+                            OTPPage()));
+    }else{
+      Get.snackbar("Login Failed", "Something went wrong", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,6 +191,7 @@ class Welcome extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: TextField(
+                      controller: mobileNoController,
                       enableSuggestions: true,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
@@ -184,12 +214,7 @@ class Welcome extends StatelessWidget {
               height: 40.h,
               width: 250.w,
               child: WelcomeButton(onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder:
-                            (context) =>
-                            OTPPage()));
+                onClickOfLogIn();
               }, text: "Continue"),
             ),
             SizedBox(

@@ -6,13 +6,17 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:vyavsay/controllers/category_service_controller.dart';
 import 'package:vyavsay/controllers/city_controller.dart';
 import 'package:vyavsay/controllers/search_store_controller.dart';
+import 'package:vyavsay/controllers/select_city_controller.dart';
 import 'package:vyavsay/previous_order.dart';
+import 'package:vyavsay/store_description.dart';
+import 'package:vyavsay/views/google_serach_cities.dart';
 import 'package:vyavsay/web_View_flutter.dart';
 import 'package:vyavsay/welcome/components/app_drawer.dart';
 
 import 'layout_groceries.dart';
 
 class LayoutHome extends StatefulWidget {
+  var selectCityController = Get.put(SelectCityController());
   var categoryServiceController = Get.put(CategoryServiceController());
   var storeController = Get.put(SearchStoreController());
   var cityController = Get.put(CityController());
@@ -70,7 +74,7 @@ class _LayoutHomeState extends State<LayoutHome> {
         endDrawer: AppDrawer(),
         appBar: AppBar(
           elevation: 0,
-          leadingWidth: 75,
+          leadingWidth: 105,
           backgroundColor: const Color(0xff134DA5).withOpacity(0.93),
           leading: Row(
             children: [
@@ -79,21 +83,31 @@ class _LayoutHomeState extends State<LayoutHome> {
               ),
               Icon(
                 Icons.location_pin,
-                size: 30,
-              ),
+                size: 25,
+              ), 
               SizedBox(
                 width: 5,
               ),
               GestureDetector(
                 onTap: (){
-                  widget.storeController.updateCity(true);
+                  // widget.storeController.updateCity(true);
+                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              GoogleSearchCities()));
                 },
-                child: Text(
-                  "Delhi",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: GetBuilder<SelectCityController>(
+                  builder: (snapshot) {
+                    return Text(
+                      "${snapshot.cityName}",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  }
                 ),
               ),
             ],
@@ -187,12 +201,13 @@ class _LayoutHomeState extends State<LayoutHome> {
                       child: ListView.builder(itemCount: snapshot.storeList.length, scrollDirection: Axis.vertical, itemBuilder: (BuildContext context, int itemIndex){
                         return GestureDetector(
                           onTap: (){
+                            widget.storeController.updateCategoryDescription(snapshot.storeList[itemIndex]);
                             Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder:
                                           (context) =>
-                                              WebViewFlutter(snapshot.storeList[itemIndex].storeLink)));
+                                              StoreDescription()));
                           },
                           child: Container(
                             height: 50,
@@ -611,24 +626,30 @@ class _LayoutHomeState extends State<LayoutHome> {
               ),
     
               Container(
-                height: 82,
+                height: 52,
+                padding: EdgeInsets.only(top: 4),
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 242, 242, 242),
                   border: Border.all(
                     width: 1.2,
-                    color: Colors.grey,
+                    color: Color(0xFFFFFFFF),
                   ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      "Store",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Column(
+                      children: [
+                        Image.asset("Assets/Images/storeImage.png", height: 25, width: 25,),
+                        Text(
+                          "Store",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       width: 15,
@@ -642,12 +663,17 @@ class _LayoutHomeState extends State<LayoutHome> {
                                           (context) =>
                                               PreviousOrder()));
                       },
-                      child: Text(
-                        "Orders",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      child: Column(
+                        children: [
+                          Image.asset("Assets/Images/ordersImage.png", height: 25, width: 25,),
+                          Text(
+                            "Orders",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],

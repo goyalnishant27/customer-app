@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vyavsay/login_services/login_service.dart';
 import 'package:vyavsay/welcome/components/welcome_button.dart';
 import 'package:vyavsay/welcome/otp_page.dart';
@@ -73,30 +74,30 @@ class _WelcomeState extends State<Welcome> {
             SizedBox(
               height: 15,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Trusted by ",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                Text(
-                  "1 lakh ",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "Businesses",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       "Trusted by ",
+            //       style: TextStyle(
+            //         fontSize: 18,
+            //       ),
+            //     ),
+            //     Text(
+            //       "1 lakh ",
+            //       style: TextStyle(
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.bold,
+            //       ),
+            //     ),
+            //     Text(
+            //       "Businesses",
+            //       style: TextStyle(
+            //         fontSize: 18,
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: 250.h,
               width: 360.w,
@@ -107,7 +108,7 @@ class _WelcomeState extends State<Welcome> {
             Column(
               children: [
                 Text(
-                  "Grow your Business",
+                  "Order Direct",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 27,
@@ -117,7 +118,7 @@ class _WelcomeState extends State<Welcome> {
                   height: 8.h,
                 ),
                 Text(
-                  "Everything that you can sell Online",
+                  "Everything that you can order online",
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.black.withOpacity(0.63),
@@ -196,10 +197,11 @@ class _WelcomeState extends State<Welcome> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        prefixText: "+91",
+                        prefixText: "+91  ",
                         prefixStyle: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.black87,
+                          fontSize: 16.0
                         ),
                       ),
                     ),
@@ -220,75 +222,75 @@ class _WelcomeState extends State<Welcome> {
             SizedBox(
               height: 30,
             ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 10,
-                ),
-                Image(
-                  image: AssetImage("Assets/welcomeScreens/Line 65.png"),
-                  height: 1.5.h,
-                  width: 150.w,
-                  fit: BoxFit.cover,
-                ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                Text(
-                  " or ",
-                  style: TextStyle(
-                    color: Colors.black.withOpacity(0.50),
-                    fontSize: 15,
-                  ),
-                ),
-                SizedBox(
-                  width: 10.w,
-                ),
-                Image(
-                  image: AssetImage("Assets/welcomeScreens/Line 65.png"),
-                  height: 1.5.h,
-                  width: 150.w,
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     SizedBox(
+            //       width: 10,
+            //     ),
+            //     Image(
+            //       image: AssetImage("Assets/welcomeScreens/Line 65.png"),
+            //       height: 1.5.h,
+            //       width: 150.w,
+            //       fit: BoxFit.cover,
+            //     ),
+            //     SizedBox(
+            //       width: 10.w,
+            //     ),
+            //     Text(
+            //       " or ",
+            //       style: TextStyle(
+            //         color: Colors.black.withOpacity(0.50),
+            //         fontSize: 15,
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: 10.w,
+            //     ),
+            //     Image(
+            //       image: AssetImage("Assets/welcomeScreens/Line 65.png"),
+            //       height: 1.5.h,
+            //       width: 150.w,
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: 40.h,
-                  width: 50.w,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black.withOpacity(0.20),
-                    ),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Image(
-                    image: AssetImage("Assets/welcomeScreens/Vector.png"),
-                  ),
-                ),
-                Container(
-                  height: 40.h,
-                  width: 50.w,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black.withOpacity(0.20),
-                    ),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Image(
-                    image: AssetImage("Assets/welcomeScreens/Google.png"),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 35.h,
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: [
+            //     Container(
+            //       height: 40.h,
+            //       width: 50.w,
+            //       decoration: BoxDecoration(
+            //         border: Border.all(
+            //           color: Colors.black.withOpacity(0.20),
+            //         ),
+            //         borderRadius: BorderRadius.circular(100),
+            //       ),
+            //       child: Image(
+            //         image: AssetImage("Assets/welcomeScreens/Vector.png"),
+            //       ),
+            //     ),
+            //     Container(
+            //       height: 40.h,
+            //       width: 50.w,
+            //       decoration: BoxDecoration(
+            //         border: Border.all(
+            //           color: Colors.black.withOpacity(0.20),
+            //         ),
+            //         borderRadius: BorderRadius.circular(100),
+            //       ),
+            //       child: Image(
+            //         image: AssetImage("Assets/welcomeScreens/Google.png"),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // SizedBox(
+            //   height: 35.h,
+            // ),
             Column(
               children: [
                 Text(
@@ -299,13 +301,26 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
                 SizedBox(
-                  height: 3.h,
+                  height: 15.h,
                 ),
-                Image(
-                  image: AssetImage(
-                    "Assets/welcomeScreens/Terms & Conditions Privacy Policies.png",
-                  ),
-                ),
+                // Image(
+                //   image: AssetImage(
+                //     "Assets/welcomeScreens/Terms & Conditions Privacy Policies.png",
+                //   ),
+                // ),
+                Container(
+                  margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.22,),
+                  child: Row(
+                    children: [
+                    GestureDetector(onTap: (){
+                      launch("https://myvyavsay.com/terms-conditions");
+                    }, child: Text("Terms & Conditions", style: TextStyle(decoration: TextDecoration.underline),)),
+                    SizedBox(width: 18,),
+                    GestureDetector(onTap: (){
+                      launch("https://myvyavsay.com/privacy-policy");
+                    }, child: Text("Privacy Policies", style: TextStyle(decoration: TextDecoration.underline),))
+                  ],),
+                )
               ],
             ),
           ],

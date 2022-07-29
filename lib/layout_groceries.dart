@@ -173,7 +173,7 @@ class _GroceriesState extends State<Groceries> {
               width: MediaQuery.of(context).size.width * 0.98,
               child: GetBuilder<CategoryServiceController>(
                 builder: (snapshot) {
-                  return ListView.builder(scrollDirection: Axis.vertical, itemCount: snapshot.searchCategroryString!= "" && snapshot.searchCategoryList.isEmpty ? snapshot.categoriesList.length :  snapshot.searchCategoryList.length, itemBuilder: (BuildContext context, int index){
+                  return ListView.builder(scrollDirection: Axis.vertical, itemCount: snapshot.searchCategroryString== "" && snapshot.searchCategoryList.isEmpty ? snapshot.categoriesList.length :  snapshot.searchCategoryList.length, itemBuilder: (BuildContext context, int index){
                     return GestureDetector(
                       onTap: (){
                         Navigator.push(
@@ -220,7 +220,7 @@ class _GroceriesState extends State<Groceries> {
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.46,
                                 child: Text(
-                                  snapshot.searchCategroryString!= "" && snapshot.searchCategoryList.isEmpty ? "${snapshot.categoriesList[index].businessName}" : "${snapshot.searchCategoryList[index].businessName}",
+                                  snapshot.searchCategroryString == "" && snapshot.searchCategoryList.isEmpty ? "${snapshot.categoriesList[index].businessName}" : "${snapshot.searchCategoryList[index].businessName}",
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.black,
@@ -234,15 +234,15 @@ class _GroceriesState extends State<Groceries> {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("1.1kms", style: TextStyle(
-                                        fontSize: 13,
-                                        color: Colors.grey,
-                                      ),),
+                                  // Text("1.1kms", style: TextStyle(
+                                  //       fontSize: 13,
+                                  //       color: Colors.grey,
+                                  //     ),),
                                       SizedBox(width: 10,),
                                   Container(
                                     width: MediaQuery.of(context).size.width * 0.20,
                                     child: Text(
-                                      snapshot.searchCategroryString!= "" && snapshot.searchCategoryList.length <= 0 ? "${snapshot.categoriesList[index].city}" : "${snapshot.searchCategoryList[index].city}",
+                                      snapshot.searchCategroryString == "" && snapshot.searchCategoryList.length <= 0 ? "${snapshot.categoriesList[index].city}" : "${snapshot.searchCategoryList[index].city}",
                                       style: TextStyle(
                                         fontSize: 13,
                                         color: Colors.grey,
@@ -254,13 +254,13 @@ class _GroceriesState extends State<Groceries> {
                               SizedBox(
                                 height: 30,
                               ),
-                              Text(
-                                "18mins",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black.withOpacity(0.5),
-                                ),
-                              ),
+                              // Text(
+                              //   "18mins",
+                              //   style: TextStyle(
+                              //     fontSize: 14,
+                              //     color: Colors.black.withOpacity(0.5),
+                              //   ),
+                              // ),
                             ],
                           ),
                           SizedBox(

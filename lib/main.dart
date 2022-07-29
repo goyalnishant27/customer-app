@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,6 +41,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
 
   // This widget is the root of your application.
+  var isLoading = true;
 
   @override
   void initState(){
@@ -54,6 +57,9 @@ class _MyAppState extends State<MyApp> {
     }else{
       widget.checkUserController.checkUser(false);
     }
+    Timer(Duration(seconds: 3), () => setState(() {
+      isLoading = false;
+    }));
   }
 
   @override
@@ -74,7 +80,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       // home:  const Alert1(),
-      home: GetBuilder<CheckUserController>(
+      home: isLoading == true ? SplashScreen() : GetBuilder<CheckUserController>(
         builder: (snapshot) {
           return snapshot.isUserLoggedIn == true ? LayoutHome() : Welcome();
         }

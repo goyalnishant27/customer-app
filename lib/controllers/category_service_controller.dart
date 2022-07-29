@@ -7,6 +7,8 @@ class CategoryServiceController extends GetxController {
   var categoriesList = <CategoryService>[];
   StoreServices storeServices = StoreServices();
   var categoryType = "";
+  var searchCategroryString = "";
+  var searchCategoryList = <CategoryService>[];
 
   // @override
   // void onInit(){
@@ -15,6 +17,8 @@ class CategoryServiceController extends GetxController {
   // }
 
   getCategoryData() async {
+    searchCategoryList = [];
+    searchCategroryString = "";
     var categories = await storeServices.getCategory(categoryType);
     categoriesList = categories;
     update();
@@ -22,6 +26,23 @@ class CategoryServiceController extends GetxController {
 
   updateCategoryType(category){
     categoryType = category;
+    update();
+  }
+
+  searchCategory(query){
+    searchCategroryString = query;
+    var cate = categoriesList.where((farm) {
+      final farmNameLower = farm.businessName!.toLowerCase();
+      final searchLower = query.toLowerCase();
+      return farmNameLower.contains(searchLower);
+    }).toList();
+    searchCategoryList = cate;
+    update();
+  }
+
+  clearSearch(){
+    searchCategoryList = [];
+    searchCategroryString = "";
     update();
   }
 

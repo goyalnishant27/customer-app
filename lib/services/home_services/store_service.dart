@@ -1,9 +1,14 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:vyavsay/models/category_service_model.dart';
 
+import '../../controllers/select_city_controller.dart';
+
 class StoreServices{
+
+  var selectCityController = Get.find<SelectCityController>(); 
 
   Future<List<CategoryService>> getCategory(category) async {
     try{
@@ -18,6 +23,7 @@ class StoreServices{
         headers: header,
         body: {
           'category': category,
+          'city': selectCityController.cityName
         },
       );
     var jsonResult = jsonDecode(jsonData.body);
@@ -47,6 +53,7 @@ class StoreServices{
         headers: header,
         body: {
           'storename': store,
+          'city': selectCityController.cityName
         },
       );
     var jsonResult = jsonDecode(jsonData.body);

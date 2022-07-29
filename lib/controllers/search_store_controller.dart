@@ -12,6 +12,7 @@ class SearchStoreController extends GetxController {
   var cityList = <CategoryService>[];
   var cityString = "";
   var isCitySelected = false;
+  CategoryService? categoryDescription;
 
   getCity(city) async {
     var stores = await storeServices.getCities(city);
@@ -32,5 +33,10 @@ class SearchStoreController extends GetxController {
     storeList = stores;
     update();
   } 
+
+  updateCategoryDescription(description){
+    categoryDescription = description;
+    update();
+  }
 
 }

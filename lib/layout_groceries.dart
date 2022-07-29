@@ -24,6 +24,7 @@ class _GroceriesState extends State<Groceries> {
   @override
   void initState(){
     super.initState();
+    // widget.categoryServiceController.clearSearch();
     widget.categoryServiceController.getCategoryData();
     // if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
@@ -102,6 +103,9 @@ class _GroceriesState extends State<Groceries> {
                                 color: Colors.black,
                               ),
                             ),
+                            onChanged: (val){
+                              widget.categoryServiceController.searchCategory(val);
+                            },
                           ),
                         ),
                       ],
@@ -110,6 +114,57 @@ class _GroceriesState extends State<Groceries> {
                 ],
               ),
             ),
+            // GetBuilder<CategoryServiceController>(
+            
+            // builder: (snapshot) {
+            //         return snapshot.searchCategroryString != "" && snapshot.searchCategoryList.length >= 1 ? Container(
+            //           margin: EdgeInsets.only(top: 10),
+            //           height: snapshot.searchCategoryList.length >= 1 ? 200 : 0,
+            //           child: ListView.builder(itemCount: snapshot.searchCategoryList.length, scrollDirection: Axis.vertical, itemBuilder: (BuildContext context, int itemIndex){
+            //             return GestureDetector(
+            //               onTap: (){
+            //                 Navigator.push(
+            //                       context,
+            //                       MaterialPageRoute(
+            //                           builder:
+            //                               (context) =>
+            //                                   WebViewFlutter(snapshot.searchCategoryList[itemIndex].storeLink)));
+            //               },
+            //               child: Container(
+            //                 height: 50,
+            //                 width: MediaQuery.of(context).size.width * 0.9,
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.start,
+            //                   children: [
+                                
+            //                               SizedBox(width: 14,),
+            //                     Column(
+            //                       mainAxisAlignment: MainAxisAlignment.center,
+            //                       children: [
+            //                         SizedBox(height: 18,),
+            //                         Text(snapshot.searchCategoryList[itemIndex].businessName.toString()),
+            //                         // SizedBox(height: 18,),
+            //                         // Text("${snapshot.storeList[itemIndex].businessName}rs", style: TextStyle(decoration: TextDecoration.lineThrough,)),
+            //                       ],
+            //                     ),
+            //                     // SizedBox(width: 14,),
+            //                     // Column(
+            //                     //   mainAxisAlignment: MainAxisAlignment.center,
+            //                     //   children: [
+            //                     //     SizedBox(height: 18,),
+            //                     //     // Text(snapshot.searchedItems[itemIndex].itemName),
+            //                     //     SizedBox(height: 32,),
+            //                     //     Text("${snapshot.storeList[itemIndex].businessName}rs"),
+            //                     //   ],
+            //                     // ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             );
+            //           }),
+            //         ) : SizedBox();
+            //         }
+            //     ),
             SizedBox(
               height: 25,
             ),
@@ -118,7 +173,7 @@ class _GroceriesState extends State<Groceries> {
               width: MediaQuery.of(context).size.width * 0.98,
               child: GetBuilder<CategoryServiceController>(
                 builder: (snapshot) {
-                  return ListView.builder(itemCount: snapshot.categoriesList.length, itemBuilder: (BuildContext context, int index){
+                  return ListView.builder(scrollDirection: Axis.vertical, itemCount: snapshot.searchCategroryString== "" && snapshot.searchCategoryList.isEmpty ? snapshot.categoriesList.length :  snapshot.searchCategoryList.length, itemBuilder: (BuildContext context, int index){
                     return GestureDetector(
                       onTap: (){
                         Navigator.push(
@@ -140,7 +195,7 @@ class _GroceriesState extends State<Groceries> {
                           // ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                            child: Image.network("https://myvyavsay.com/upload/store/${snapshot.categoriesList[index].storeImage}", width: 100, height: 100, errorBuilder:
+                            child: Image.network("https://myvyavsay.com/upload/store/${snapshot.categoriesList[index].storeImage}", width: 100, height: 100, fit: BoxFit.fill, errorBuilder:
                                                     (context, error, stacktrace) {
                                                   return ClipRRect(
                                                     borderRadius:
@@ -163,11 +218,11 @@ class _GroceriesState extends State<Groceries> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
+                                width: MediaQuery.of(context).size.width * 0.46,
                                 child: Text(
-                                  "${snapshot.categoriesList[index].businessName}",
+                                  snapshot.searchCategroryString == "" && snapshot.searchCategoryList.isEmpty ? "${snapshot.categoriesList[index].businessName}" : "${snapshot.searchCategoryList[index].businessName}",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 16,
                                     color: Colors.black,
                                   ),
                                   maxLines: 3,
@@ -176,39 +231,49 @@ class _GroceriesState extends State<Groceries> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.29,
-                                child: Text(
-                                  "${snapshot.categoriesList[index].storeAddress}",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black.withOpacity(0.5),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Text("1.1kms", style: TextStyle(
+                                  //       fontSize: 13,
+                                  //       color: Colors.grey,
+                                  //     ),),
+                                      SizedBox(width: 10,),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width * 0.20,
+                                    child: Text(
+                                      snapshot.searchCategroryString == "" && snapshot.searchCategoryList.length <= 0 ? "${snapshot.categoriesList[index].city}" : "${snapshot.searchCategoryList[index].city}",
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                               SizedBox(
                                 height: 30,
                               ),
-                              Text(
-                                "Offer",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black.withOpacity(0.5),
-                                ),
-                              ),
+                              // Text(
+                              //   "18mins",
+                              //   style: TextStyle(
+                              //     fontSize: 14,
+                              //     color: Colors.black.withOpacity(0.5),
+                              //   ),
+                              // ),
                             ],
                           ),
                           SizedBox(
                             width: 60,
                           ),
-                          Text(
-                            "Open",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff4CAF50),
-                            ),
-                          ),
+                          // Text(
+                          //   "Open",
+                          //   style: TextStyle(
+                          //     fontSize: 20,
+                          //     fontWeight: FontWeight.bold,
+                          //     color: Color(0xff4CAF50),
+                          //   ),
+                          // ),
                         ],
                       ),
                                       ),

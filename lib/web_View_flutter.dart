@@ -23,10 +23,12 @@ class _WebViewFlutterState extends State<WebViewFlutter> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: WebView(
-         initialUrl: widget.storeLink != "" ? widget.storeLink : 'https://myvyavsay.com/',
-       ),
+    return Scaffold(
+      body: SafeArea(
+        child: WebView(
+           initialUrl: widget.storeLink != "" ? widget.storeLink : 'https://myvyavsay.com/',
+         ),
+      ),
     );
   }
 }

@@ -21,17 +21,17 @@ class ChangeNumberDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Change your \nwhatsapp number',
+                'Change your number',
                 style: TextStyle(
                     fontSize: 18, fontWeight: FontWeight.w700),
               ),
-              InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Image.asset('images/cancel.png')),
+              // InkWell(
+              //     splashColor: Colors.transparent,
+              //     highlightColor: Colors.transparent,
+              //     onTap: () {
+              //       Get.back();
+              //     },
+              //     child: Image.asset('images/cancel.png')),
             ],
           ),
           SizedBox(height: 20),
@@ -40,10 +40,10 @@ class ChangeNumberDialog extends StatelessWidget {
             maxLength: 10,
             decoration: InputDecoration(
               isDense: true,
-              labelText: 'Whatsapp Number',
+              labelText: 'Phone Number',
               prefixIcon: Icon(
-                Icons.whatsapp,
-                color: Colors.green,
+                Icons.phone,
+                color: Colors.black,
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -61,7 +61,7 @@ class ChangeNumberDialog extends StatelessWidget {
               onPressed: (){
                 controller.changeNumber();
               },
-              color: Colors.blue,
+              color: Color(0xff134DA5).withOpacity(0.93),
               child: Text('Confirm')),
         ],
       ),

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -13,10 +14,12 @@ import 'package:vyavsay/views/google_serach_cities.dart';
 import 'package:vyavsay/web_View_flutter.dart';
 import 'package:vyavsay/welcome/components/app_drawer.dart';
 
+import 'controllers/restaurent_details_controller.dart';
 import 'layout_groceries.dart';
 
 class LayoutHome extends StatefulWidget {
   var selectCityController = Get.put(SelectCityController());
+  var restaurentDetailsController = Get.put(RestaurentDetailsController());
   var categoryServiceController = Get.put(CategoryServiceController());
   var storeController = Get.put(SearchStoreController());
   var cityController = Get.put(CityController());
@@ -31,29 +34,36 @@ class _LayoutHomeState extends State<LayoutHome> {
   var categoryList = [
     {
       'categoryName': "Restaurent",
-      'categoryParam': 'res'
+      'categoryParam': 'res',
+      'categoryImage': 'Assets/Images/res.jpeg'
     },
     {
       'categoryName': "Grocery",
-      'categoryParam': 'grocery'
+      'categoryParam': 'grocery',
+      'categoryImage': 'Assets/Images/grocery.jpeg'
     },
     {
       'categoryName': "Laundary",
-      'categoryParam': 'laundary'
+      'categoryParam': 'laundary',
+      'categoryImage': 'Assets/Images/laundary.jpeg'
     },
     {
-      'categoryName': "Restaurent",
-      'categoryParam': 'res'
+      'categoryName': "Pharmacy",
+      'categoryParam': 'res',
+      'categoryImage': 'Assets/Images/pharmacy.jpeg'
     },
     {
-      'categoryName': "Restaurent",
-      'categoryParam': 'res'
+      'categoryName': "Fruits and \nVegetables",
+      'categoryParam': 'res',
+      'categoryImage': 'Assets/Images/frtsVeg.jpeg'
     },
     {
-      'categoryName': "Restaurent",
-      'categoryParam': 'res'
+      'categoryName': "Electronics",
+      'categoryParam': 'res',
+      'categoryImage': 'Assets/Images/elec.jpeg'
     },
   ];
+  List images = [];
   TextEditingController searchStoreController = TextEditingController();
 
   @override
@@ -244,57 +254,69 @@ class _LayoutHomeState extends State<LayoutHome> {
                     ) : SizedBox();
                   }
                 ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.45,
-                child: GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                           maxCrossAxisExtent: 120,
-                  childAspectRatio: 0.66,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10),
-                      itemCount: categoryList.length,
-                      itemBuilder: (BuildContext ctx, index) {
-                        return GestureDetector(
-                            onTap: (){
-                              widget.categoryServiceController.updateCategoryType('${categoryList[index]['categoryParam']}');
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder:
-                                          (context) =>
-                                              Groceries(categoryList[index]['categoryName'])));
-                            },
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 147,
-                                  width: 114,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey,
-                                        offset: Offset(4, 4),
-                                        blurRadius: 10,
+                SizedBox(height: 20),
+                
+                SizedBox(height: 20),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.47,
+                child: Container(
+                  margin: EdgeInsets.only(left: 10, right: 10),
+                  child: GridView.builder(
+                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                             maxCrossAxisExtent: 120,
+                    childAspectRatio: 0.66,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
+                        itemCount: categoryList.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          return GestureDetector(
+                              onTap: (){
+                                widget.categoryServiceController.updateCategoryType('${categoryList[index]['categoryParam']}');
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder:
+                                            (context) =>
+                                                Groceries(categoryList[index]['categoryName'])));
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 126,
+                                    width: 114,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      // boxShadow: [
+                                      //   BoxShadow(
+                                      //     color: Colors.grey,
+                                      //     offset: Offset(4, 4),
+                                      //     blurRadius: 10,
+                                      //   ),
+                                      // ],
+                                    ),
+                                    child: ClipRRect(borderRadius: BorderRadius.circular(10.0), 
+                                      child: Image.asset(
+                                          "${categoryList[index]['categoryImage']}", fit: BoxFit.fill,),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    height: 30,
+                                    child: Text(
+                                      "${categoryList[index]['categoryName']}",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                    ],
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
-                                  child: Image.asset(
-                                      "Assets/welcomeScreens/Google.png"),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "${categoryList[index]['categoryName']}",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                }),
+                                ],
+                              ),
+                            );
+                  }),
+                ),
               ),
               // SizedBox(
               //   height: 390,
@@ -509,9 +531,9 @@ class _LayoutHomeState extends State<LayoutHome> {
               //     ],
               //   ),
               // ),
-              SizedBox(
-                height: 50,
-              ),
+              // SizedBox(
+              //   height: 50,
+              // ),
               Container(
                 height: 215,
                 width: 414,
@@ -524,10 +546,10 @@ class _LayoutHomeState extends State<LayoutHome> {
                       offset: Offset(4, 4),
                     ),
                   ],
-                  border: Border.all(
-                    width: 1.65,
-                    color: Colors.grey,
-                  ),
+                  // border: Border.all(
+                  //   width: 1.65,
+                  //   color: Colors.grey,
+                  // ),
                 ),
                 child: Column(
                   children: [
@@ -564,55 +586,90 @@ class _LayoutHomeState extends State<LayoutHome> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                height: 200,
-                width: 500,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    SizedBox(
-                      width: 500,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 145,
-                            width: 240,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 5,
-                                  offset: Offset(2, 4),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Container(
-                            height: 145,
-                            width: 240,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey,
-                                  blurRadius: 5,
-                                  offset: Offset(2, 4),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              GetBuilder<RestaurentDetailsController>(
+                  builder: (snapshot) {
+                            return Container(height: 160, width: MediaQuery.of(context).size.width * 1.0, child: CarouselSlider.builder(itemCount: snapshot.restaurentDetails.bannerImg.length, itemBuilder: (BuildContext context, int index, ind){
+                              return  Container( width: MediaQuery.of(context).size.width * 0.9,
+                                                  // margin: EdgeInsets.symmetric(horizontal: 16.0),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(7.0),
+                                                    // color: Colors.white
+                                                  ),child: ClipRRect(borderRadius: BorderRadius.circular(20.0), child: Image.network("https://myvyavsay.com/upload/marchant_theme/${snapshot.restaurentDetails.bannerImg[index]}", width: MediaQuery.of(context).size.width * 1,  height: MediaQuery.of(context).size.height * 1, fit: BoxFit.fill, errorBuilder:
+                                                  (context, error, stacktrace) {
+                                                return ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                  child: Container(
+                                                    height: 122,
+                                                    
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                );
+                                              })));
+                                
+                              
+                            }, options: CarouselOptions(
+                              autoPlay: true,
+                                    autoPlayInterval: const Duration(seconds: 2),
+                                        viewportFraction: 0.93,
+                                        onPageChanged: (index, String) {
+                                        print("index changed");
+                                      },
+                                      )));
+                          }
+                        ),
+              // Container(
+              //   height: 200,
+              //   width: 500,
+              //   child: ListView(
+              //     scrollDirection: Axis.horizontal,
+              //     children: [
+              //       SizedBox(
+              //         width: 500,
+              //         child: Row(
+              //           children: [
+              //             Container(
+              //               height: 145,
+              //               width: 240,
+              //               decoration: BoxDecoration(
+              //                 color: Colors.white,
+              //                 borderRadius: BorderRadius.circular(20),
+              //                 boxShadow: [
+              //                   BoxShadow(
+              //                     color: Colors.grey,
+              //                     blurRadius: 5,
+              //                     offset: Offset(2, 4),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //             SizedBox(
+              //               width: 15,
+              //             ),
+              //             Container(
+              //               height: 145,
+              //               width: 240,
+              //               decoration: BoxDecoration(
+              //                 color: Colors.white,
+              //                 borderRadius: BorderRadius.circular(20),
+              //                 boxShadow: [
+              //                   BoxShadow(
+              //                     color: Colors.grey,
+              //                     blurRadius: 5,
+              //                     offset: Offset(2, 4),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(
                 height: 20,
               ),
@@ -632,7 +689,7 @@ class _LayoutHomeState extends State<LayoutHome> {
                   color: Color.fromARGB(255, 242, 242, 242),
                   border: Border.all(
                     width: 1.2,
-                    color: Color(0xFFFFFFFF),
+                    color: Colors.white,
                   ),
                 ),
                 child: Row(

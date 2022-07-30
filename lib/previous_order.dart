@@ -95,9 +95,9 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: 10.h, horizontal: 10.w),
+                                          vertical: 10.h, horizontal: 6.w),
                                       child: Container(
-                                        height: Get.height * 0.20,
+                                        height: Get.height * 0.17,
                                         width: Get.width * 0.85,
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 20.h, vertical: 10.w),
@@ -110,7 +110,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                           Row(
                                             children: [
                                               Text(
-                                                "Name: ${i.name!}",
+                                                "Order-ID: ${i.id!}",
                                                 style: TextStyle(
                                                     color: Colors.blue,
                                                     fontWeight: FontWeight.w600,
@@ -121,13 +121,13 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                               CircleAvatar(
                                                 radius: 8,
                                                 backgroundColor:
-                                                    Colors.blue,
+                                                    i.status == '1' ? Color.fromARGB(255, 248, 230, 72) : i.status == '2' ? Colors.green : i.status == '3' ? Colors.blue : i.status == '4' ? Colors.blue : i.status == '5' ? Colors.green : i.status == '6' ? Colors.red : Colors.red,
                                               ),
                                               const SizedBox(
                                                 width: 6,
                                               ),
                                               Text(
-                                                "Order",
+                                                i.status == "1" ? "Pending" : i.status == "2" ? "Accepted" : i.status == "3" ? "In Transit" : i.status == "4" ? "Out of Delivery" : i.status == "5" ? "Delivered" : i.status == "6" ? "Cancel" : "Payment Failed",
                                                 style: TextStyle(
                                                   fontSize: 16.sp,
                                                   fontFamily: "Proxima Nova Font",
@@ -135,7 +135,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                               )
                                             ],
                                           ),
-                                          const Spacer(),
+                                          SizedBox(height: 40),
                                           Row(
                                             children: [
                            
@@ -143,50 +143,13 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        "Order-ID: ",
-                                                        style: TextStyle(
-                                                            color: Colors.black54,
-                                                            fontFamily: 'Nunito',
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 16.sp),
-                                                      ),
-                                                      Text(
-                                                        i.id,
-                                                        style: TextStyle(
-                                                            color: Colors.black54,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontFamily:
-                                                                "Proxima Nova Font",
-                                                            fontSize: 16.sp),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: Get.height * 0.008,
-                                                  ),
-                                                  Text(
-                                                    "No of item : ${i.no_of_item!}",
-                                                    style: TextStyle(
-                                                        color: Colors.black54,
-                                                        fontWeight: FontWeight.w700,
-                                                        fontFamily: "Proxima Nova Font",
-                                                        fontSize: 16.sp),
-                                                  ),
-                                                ],
-                                              ),
-                                              const Spacer(),
-                                              Column(
-                                                children: [
-                                                  Row(
+                                                   Row(
                                                     children: [
                                                       Text(
                                                         "Total Amount :",
                                                         style: TextStyle(
-                                                            color: Colors.black54,
-                                                            fontWeight: FontWeight.w600,
+                                                            color: Colors.black,
+                                                            fontWeight: FontWeight.bold,
                                                             fontFamily:
                                                                 "Proxima Nova Font",
                                                             fontSize: 16.sp),
@@ -205,20 +168,49 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                                   SizedBox(
                                                     height: Get.height * 0.008,
                                                   ),
-                                                  Center(
-                                                    child: Text(
-                                                      i.order_datetime,
-                                                      style: TextStyle(
-                                                          color: Colors.black54,
-                                                          fontWeight: FontWeight.w300,
-                                                          fontFamily:
-                                                              "Proxima Nova Font",
-                                                          fontSize: 16.sp),
-                                                    ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        "No of item :",
+                                                        style: TextStyle(
+                                                            color: Colors.black,
+                                                                fontWeight: FontWeight.bold,
+                                                            fontFamily: "Proxima Nova Font",
+                                                            fontSize: 16.sp),
+                                                      ),
+                                                      Text(
+                                                        " ${i.no_of_item!}",
+                                                        style: TextStyle(
+                                                            color: Colors.black54,
+                                                                fontWeight: FontWeight.w600,
+                                                            fontFamily: "Proxima Nova Font",
+                                                            fontSize: 16.sp),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  SizedBox(
-                                                    height: Get.height * 0.008,
-                                                  ),
+                                                ],
+                                              ),
+                                              const Spacer(),
+                                              Column(
+                                                children: [
+                                                 
+                                                  // SizedBox(
+                                                  //   height: Get.height * 0.008,
+                                                  // ),
+                                                  // Center(
+                                                  //   child: Text(
+                                                  //     i.order_datetime,
+                                                  //     style: TextStyle(
+                                                  //         color: Colors.black54,
+                                                  //         fontWeight: FontWeight.w300,
+                                                  //         fontFamily:
+                                                  //             "Proxima Nova Font",
+                                                  //         fontSize: 16.sp),
+                                                  //   ),
+                                                  // ),
+                                                  // SizedBox(
+                                                  //   height: Get.height * 0.008,
+                                                  // ),
                                                   if (i.order_datetime != null)
                                                     Center(
                                                       child: Text(

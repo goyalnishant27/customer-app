@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vyavsay/controllers/category_service_controller.dart';
 import 'package:vyavsay/web_View_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -176,15 +177,18 @@ class _GroceriesState extends State<Groceries> {
                   return ListView.builder(scrollDirection: Axis.vertical, itemCount: snapshot.searchCategroryString== "" && snapshot.searchCategoryList.isEmpty ? snapshot.categoriesList.length :  snapshot.searchCategoryList.length, itemBuilder: (BuildContext context, int index){
                     return GestureDetector(
                       onTap: (){
-                        Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder:
-                                          (context) =>
-                                              WebViewFlutter(snapshot.categoriesList[index].storeLink)));
+                        var store_link = snapshot.categoriesList[index].businessName!.replaceAll(" ", "-");
+                        var final_store_link = "https://myvyavsay.com/m/$store_link";
+                        // Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder:
+                        //                   (context) =>
+                        //                       WebViewFlutter(final_store_link)));
+                         launch("$final_store_link");
                       },
                       child: Padding(
-                      padding: const EdgeInsets.only(left: 16.0, bottom: 10.0),
+                      padding: const EdgeInsets.only(left: 16.0),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -216,7 +220,11 @@ class _GroceriesState extends State<Groceries> {
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              SizedBox(
+                                height: 5,
+                              ),
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.46,
                                 child: Text(

@@ -62,9 +62,19 @@ class _AllScreensState extends State<AllScreens> {
               SizedBox(
                 width: 3,
               ),
-              Icon(
-                Icons.location_pin,
-                size: 25,
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              GoogleSearchCities()));
+                },
+                child: Icon(
+                  Icons.location_pin,
+                  size: 25,
+                ),
               ), 
               SizedBox(
                 width: 5,
@@ -163,7 +173,7 @@ class _AllScreensState extends State<AllScreens> {
                       icon:Image.asset("Assets/Images/storeImage.png", height: 20, width: 25,),
                       label: "Store"),
                       BottomNavigationBarItem(
-                      icon: Image.asset("Assets/Images/courier.png", height: 25, width: 25,),
+                      icon: Image.asset("Assets/Images/courierIcon.png", height: 25, width: 25,),
                       label: "Courier"),
                       BottomNavigationBarItem(
                       icon: Image.asset("Assets/Images/offers.png", height: 25, width: 25,),

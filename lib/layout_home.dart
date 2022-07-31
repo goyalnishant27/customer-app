@@ -260,7 +260,7 @@ class _LayoutHomeState extends State<LayoutHome> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.47,
                 child: Container(
                   margin: EdgeInsets.only(left: 10, right: 10),
-                  child: GridView.builder(
+                  child: GridView.builder(physics: NeverScrollableScrollPhysics(),
                         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                              maxCrossAxisExtent: 120,
                     childAspectRatio: 0.66,

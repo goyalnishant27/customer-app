@@ -44,25 +44,25 @@ class _PreviousOrderState extends State<PreviousOrder> {
     ScreenUtil.init(context, designSize: const Size(360, 800));
     return GetBuilder<CheckUserController>(
       builder: (userCont) {
-        return Scaffold(
-            appBar: AppBar(
+        return Container(
+            // appBar: AppBar(
     
-                leading: IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left,
-                    color: Colors.white,
-                  ),
-                  onPressed: () => Get.back(),
-                ),
-                title: const Text(
-                  'Previous Orders',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Proxima Nova Font",
-                  ),
-                ),
-                backgroundColor: Colors.blue),
-            body: 
+            //     leading: IconButton(
+            //       icon: const Icon(
+            //         Icons.chevron_left,
+            //         color: Colors.white,
+            //       ),
+            //       onPressed: () => Get.back(),
+            //     ),
+            //     title: const Text(
+            //       'Previous Orders',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //         fontFamily: "Proxima Nova Font",
+            //       ),
+            //     ),
+            //     backgroundColor: Colors.blue),
+            child: 
             // Loader(
             //   show: snapshot.previousOrders.isNotEmpty,
             //   child: controller.previousOrderList.value == null

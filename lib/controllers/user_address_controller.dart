@@ -26,13 +26,18 @@ class UserAddressController extends GetxController {
         body: {
           'user_id': userId,
           'address1': street,
-          'address2': area,
-          'city': city,
-          'pincode': pincode,
-          'state': "Talangana",
+        'address2': area,
+        'city': city,
+        'pincode': pincode,
+        'state':state,
         },
       );
     var jsonResult = jsonDecode(jsonData.body);
+    if(jsonData.statusCode == 200){
+      Get.snackbar("Change Address", "Successfully Changed Address", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
+    }else{
+      Get.snackbar("Change Address", "Failed Changed Address", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
+    }
   }
 
   getUserAddress() async {

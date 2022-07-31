@@ -19,12 +19,14 @@ class AuthController extends GetxController {
       // SB.showWarning(Strings.everyFieldMandatory);
     } else if(!phoneTextController.text.isPhoneNumber) {
       // SB.showWarning('Phone not valid');
+      Get.snackbar("Change Phone Number", "Phone Number not valid", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
     }else {
       userType = await phoneNumberServices.changeNumber(
           phone: phoneTextController.text);
       sendOtpButtonController.stop();
       if (userType!=null) {
         // SB.show("Otp Sent", );
+        Get.snackbar("Change Phone Number", "Otp Sent", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
         showModalBottomSheet(
             context: Get.context!,
             isScrollControlled: true,
@@ -33,6 +35,7 @@ class AuthController extends GetxController {
             builder: (context) => ChangeNumberOtp());
       } else {
         // SB.showWarning(Strings.couldntSendOtp);
+        Get.snackbar("Change Phone Number", "Couldnt Send Otp", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
       }
     }
     sendOtpButtonController.stop();
@@ -46,6 +49,7 @@ class AuthController extends GetxController {
       // Get.back();
       // Get.back();
       // SB.show("Successfully Changed phone number", );
+      Get.snackbar("Change Phone Number", "Successfully Changed phone number", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
     } else {
       // SB.showWarning('Invalid OTP');
     }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vyavsay/all_screens.dart';
 import 'package:vyavsay/layout_home.dart';
 import 'package:vyavsay/splash_page.dart';
 import 'package:vyavsay/welcome/name_page.dart';
@@ -82,7 +83,7 @@ class _MyAppState extends State<MyApp> {
       // home:  const Alert1(),
       home: isLoading == true ? SplashScreen() : GetBuilder<CheckUserController>(
         builder: (snapshot) {
-          return snapshot.isUserLoggedIn == true ? LayoutHome() : Welcome();
+          return snapshot.isUserLoggedIn == true ? AllScreens() : Welcome();
         }
       ),
     );

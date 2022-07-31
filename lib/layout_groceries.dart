@@ -179,13 +179,13 @@ class _GroceriesState extends State<Groceries> {
                       onTap: (){
                         var store_link = snapshot.categoriesList[index].businessName!.replaceAll(" ", "-");
                         var final_store_link = "https://myvyavsay.com/m/$store_link";
-                        // Navigator.push(
-                        //           context,
-                        //           MaterialPageRoute(
-                        //               builder:
-                        //                   (context) =>
-                        //                       WebViewFlutter(final_store_link)));
-                         launch("$final_store_link");
+                        Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              WebViewFlutter(final_store_link.toString())));
+                          // launch("$final_store_link", forceSafariVC: true, forceWebView: true, universalLinksOnly: true);
                       },
                       child: Padding(
                       padding: const EdgeInsets.only(left: 16.0),

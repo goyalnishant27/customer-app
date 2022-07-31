@@ -60,7 +60,7 @@ class _AddressScreenState extends State<AddressScreen> {
             SizedBox(height: 20,),
             CustomTextField(stateController, "State", true),
             SizedBox(height: 20,),
-            CustomTextField(pincodeController, "Pincode", true),
+            CustomTextField(pincodeController, "Pincode", true, inputType: true,),
             SizedBox(height: 20,),
             Container(
                     width: Get.width * 0.78,

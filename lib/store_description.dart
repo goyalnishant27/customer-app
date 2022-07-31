@@ -59,13 +59,15 @@ class StoreDescription extends StatelessWidget {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                   Container(
                     child: Center(child: SizedBox(width: MediaQuery.of(context).size.width * 0.8, child: ElevatedButton(onPressed: (){
+                      var store_link = snapshot.categoryDescription!.businessName!.replaceAll(" ", "-");
+                        var final_store_link = "https://myvyavsay.com/m/$store_link";
                       Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder:
                                           (context) =>
-                                              WebViewFlutter(snapshot.categoryDescription!.storeLink)));
-                    }, child: Text("Checkout Store"),))),
+                                              WebViewFlutter(final_store_link)));
+                    }, child: Text("Checkout Store"), style: ElevatedButton.styleFrom(primary: Color(0xff134DA5).withOpacity(0.93)),))),
                   )
             ]),),
           );

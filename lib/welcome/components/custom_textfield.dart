@@ -4,7 +4,8 @@ class CustomTextField extends StatelessWidget {
   TextEditingController controller;
   var _labelText;
   var showstar;
-  CustomTextField(this.controller, this._labelText, this.showstar);
+  var inputType;
+  CustomTextField(this.controller, this._labelText, this.showstar, {this.inputType});
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,7 @@ class CustomTextField extends StatelessWidget {
                 borderSide: BorderSide(color: Colors.grey, width: 2),
               ),
       ),
+      keyboardType: inputType == null ? TextInputType.emailAddress : TextInputType.number,
     );
   }
 }

@@ -18,8 +18,8 @@ import 'controllers/restaurent_details_controller.dart';
 import 'layout_groceries.dart';
 
 class LayoutHome extends StatefulWidget {
-  var selectCityController = Get.put(SelectCityController());
-  var restaurentDetailsController = Get.put(RestaurentDetailsController());
+  
+  
   var categoryServiceController = Get.put(CategoryServiceController());
   var storeController = Get.put(SearchStoreController());
   var cityController = Get.put(CityController());
@@ -49,17 +49,17 @@ class _LayoutHomeState extends State<LayoutHome> {
     },
     {
       'categoryName': "Pharmacy",
-      'categoryParam': 'res',
+      'categoryParam': 'pharmacy',
       'categoryImage': 'Assets/Images/pharmacy.jpeg'
     },
     {
       'categoryName': "Fruits and \nVegetables",
-      'categoryParam': 'res',
+      'categoryParam': 'frits',
       'categoryImage': 'Assets/Images/frtsVeg.jpeg'
     },
     {
       'categoryName': "Electronics",
-      'categoryParam': 'res',
+      'categoryParam': 'electronics',
       'categoryImage': 'Assets/Images/elec.jpeg'
     },
   ];
@@ -80,55 +80,55 @@ class _LayoutHomeState extends State<LayoutHome> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: Scaffold(
-        endDrawer: AppDrawer(),
-        appBar: AppBar(
-          elevation: 0,
-          leadingWidth: 105,
-          backgroundColor: const Color(0xff134DA5).withOpacity(0.93),
-          leading: Row(
-            children: [
-              SizedBox(
-                width: 3,
-              ),
-              Icon(
-                Icons.location_pin,
-                size: 25,
-              ), 
-              SizedBox(
-                width: 5,
-              ),
-              GestureDetector(
-                onTap: (){
-                  // widget.storeController.updateCity(true);
-                  Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder:
-                                          (context) =>
-                                              GoogleSearchCities()));
-                },
-                child: GetBuilder<SelectCityController>(
-                  builder: (snapshot) {
-                    return Text(
-                      "${snapshot.cityName}",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  }
-                ),
-              ),
-            ],
-          ),
-          // actions: <Widget>[
-          //   IconButton(onPressed: (){
-          //     Scaffold.of(context).openDrawer();
-          //   }, icon: Image.asset("Assets/Images/Account.png"))
-          // ],
-        ),
-        body: SingleChildScrollView(
+      child: Container(
+        // endDrawer: AppDrawer(),
+        // appBar: AppBar(
+        //   elevation: 0,
+        //   leadingWidth: 105,
+        //   backgroundColor: const Color(0xff134DA5).withOpacity(0.93),
+        //   leading: Row(
+        //     children: [
+        //       SizedBox(
+        //         width: 3,
+        //       ),
+        //       Icon(
+        //         Icons.location_pin,
+        //         size: 25,
+        //       ), 
+        //       SizedBox(
+        //         width: 5,
+        //       ),
+        //       GestureDetector(
+        //         onTap: (){
+        //           // widget.storeController.updateCity(true);
+        //           Navigator.push(
+        //                           context,
+        //                           MaterialPageRoute(
+        //                               builder:
+        //                                   (context) =>
+        //                                       GoogleSearchCities()));
+        //         },
+        //         child: GetBuilder<SelectCityController>(
+        //           builder: (snapshot) {
+        //             return Text(
+        //               "${snapshot.cityName}",
+        //               style: TextStyle(
+        //                 fontSize: 15,
+        //                 fontWeight: FontWeight.bold,
+        //               ),
+        //             );
+        //           }
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        //   // actions: <Widget>[
+        //   //   IconButton(onPressed: (){
+        //   //     Scaffold.of(context).openDrawer();
+        //   //   }, icon: Image.asset("Assets/Images/Account.png"))
+        //   // ],
+        // ),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               // GetBuilder<CategoryServiceController>(
@@ -682,60 +682,60 @@ class _LayoutHomeState extends State<LayoutHome> {
                 ],
               ),
     
-              Container(
-                height: 52,
-                padding: EdgeInsets.only(top: 4),
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 242, 242, 242),
-                  border: Border.all(
-                    width: 1.2,
-                    color: Colors.white,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Column(
-                      children: [
-                        Image.asset("Assets/Images/storeImage.png", height: 25, width: 25,),
-                        Text(
-                          "Store",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                         Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder:
-                                          (context) =>
-                                              PreviousOrder()));
-                      },
-                      child: Column(
-                        children: [
-                          Image.asset("Assets/Images/ordersImage.png", height: 25, width: 25,),
-                          Text(
-                            "Orders",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // Container(
+              //   height: 52,
+              //   padding: EdgeInsets.only(top: 4),
+              //   decoration: BoxDecoration(
+              //     color: Color.fromARGB(255, 242, 242, 242),
+              //     border: Border.all(
+              //       width: 1.2,
+              //       color: Colors.white,
+              //     ),
+              //   ),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //     crossAxisAlignment: CrossAxisAlignment.end,
+              //     children: [
+              //       Column(
+              //         children: [
+              //           Image.asset("Assets/Images/storeImage.png", height: 25, width: 25,),
+              //           Text(
+              //             "Store",
+              //             style: TextStyle(
+              //               color: Colors.grey,
+              //               fontWeight: FontWeight.bold,
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //       SizedBox(
+              //         width: 15,
+              //       ),
+              //       GestureDetector(
+              //         onTap: (){
+              //            Navigator.push(
+              //                     context,
+              //                     MaterialPageRoute(
+              //                         builder:
+              //                             (context) =>
+              //                                 PreviousOrder()));
+              //         },
+              //         child: Column(
+              //           children: [
+              //             Image.asset("Assets/Images/ordersImage.png", height: 25, width: 25,),
+              //             Text(
+              //               "Orders",
+              //               style: TextStyle(
+              //                 color: Colors.grey,
+              //                 fontWeight: FontWeight.bold,
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

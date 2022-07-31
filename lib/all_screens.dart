@@ -160,24 +160,16 @@ class _AllScreensState extends State<AllScreens> {
                 //] : 
                 [
                   BottomNavigationBarItem(
-                      icon:Image.asset("Assets/Images/storeImage.png", height: 25, width: 25,),
+                      icon:Image.asset("Assets/Images/storeImage.png", height: 20, width: 25,),
                       label: "Store"),
                       BottomNavigationBarItem(
-                      icon: Container(
-                        height: 25,
-                        width: 25,
-                        child: Image.asset("Assets/Images/courier.png", height: 25, width: 25,),
-                      ),
+                      icon: Image.asset("Assets/Images/courier.png", height: 25, width: 25,),
                       label: "Courier"),
                       BottomNavigationBarItem(
-                      icon: Container(
-                        height: 25,
-                        width: 25,
-                        child: Image.asset("Assets/Images/offers.png", height: 25, width: 25,),
-                      ),
+                      icon: Image.asset("Assets/Images/offers.png", height: 25, width: 25,),
                       label: "Offers"),
                       BottomNavigationBarItem(
-                      icon: Image.asset("Assets/Images/ordersImage.png", height: 25, width: 25,),
+                      icon: Image.asset("Assets/Images/ordersImage.png", height: 20, width: 25,),
                       label: "Orders"),
                 ],
               ));

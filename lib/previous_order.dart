@@ -97,7 +97,7 @@ class _PreviousOrderState extends State<PreviousOrder> {
                                       padding: EdgeInsets.symmetric(
                                           vertical: 10.h, horizontal: 6.w),
                                       child: Container(
-                                        height: Get.height * 0.17,
+                                        height: Get.height * 0.18,
                                         width: Get.width * 0.85,
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 20.h, vertical: 10.w),

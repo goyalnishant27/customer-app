@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
       // home:  const Alert1(),
       home: isLoading == true ? SplashScreen() : GetBuilder<CheckUserController>(
         builder: (snapshot) {
-          return snapshot.isUserLoggedIn == true ? AllScreens() : Welcome();
+          return AllScreens();
         }
       ),
     );

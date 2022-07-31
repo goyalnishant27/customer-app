@@ -64,23 +64,23 @@ class _AppDrawerState extends State<AppDrawer> {
           )),
         ),
        
-        ListTile(
-          title: GestureDetector(onTap: () async {
-            showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(30))),
-                    builder: (context) => ChangeNumberDialog());
-          }, child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("Assets/Images/changeNumber.png", height: 25, width: 25,),
-              SizedBox(width: 20,),
-              Text("Change Number", style: TextStyle(fontSize: 18),),
-            ],
-          )),),
+        // ListTile(
+        //   title: GestureDetector(onTap: () async {
+        //     showModalBottomSheet(
+        //             context: context,
+        //             isScrollControlled: true,
+        //             shape: RoundedRectangleBorder(
+        //                 borderRadius:
+        //                     BorderRadius.vertical(top: Radius.circular(30))),
+        //             builder: (context) => ChangeNumberDialog());
+        //   }, child: Row(
+        //     crossAxisAlignment: CrossAxisAlignment.center,
+        //     children: [
+        //       Image.asset("Assets/Images/changeNumber.png", height: 25, width: 25,),
+        //       SizedBox(width: 20,),
+        //       Text("Change Number", style: TextStyle(fontSize: 18),),
+        //     ],
+        //   )),),
           // ListTile(
           // title: GestureDetector(onTap: (){
           //             launch("https://myvyavsay.com/");
@@ -92,23 +92,23 @@ class _AppDrawerState extends State<AppDrawer> {
           //     Text("Refer & Earn", style: TextStyle(fontSize: 18),),
           //   ],
           // )),),
-          ListTile(
-          title: GestureDetector(onTap: (){
-            showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(30))),
-                    builder: (context) => AddressScreen());
-          }, child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("Assets/Images/addressIcon.png", height: 25, width: 25,),
-              SizedBox(width: 20,),
-              Text("Address", style: TextStyle(fontSize: 18),),
-            ],
-          )),),
+          // ListTile(
+          // title: GestureDetector(onTap: (){
+          //   showModalBottomSheet(
+          //           context: context,
+          //           isScrollControlled: true,
+          //           shape: RoundedRectangleBorder(
+          //               borderRadius:
+          //                   BorderRadius.vertical(top: Radius.circular(30))),
+          //           builder: (context) => AddressScreen());
+          // }, child: Row(
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
+          //     Image.asset("Assets/Images/addressIcon.png", height: 25, width: 25,),
+          //     SizedBox(width: 20,),
+          //     Text("Address", style: TextStyle(fontSize: 18),),
+          //   ],
+          // )),),
           ListTile(
           title: GestureDetector(onTap: (){
                       // launch("https://myvyavsay.com/");

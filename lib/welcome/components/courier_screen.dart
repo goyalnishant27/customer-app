@@ -41,7 +41,7 @@ class CourierScreen extends StatelessWidget {
           ),
           SizedBox(height: 40,),
           Container(
-            height: 120,
+            height: MediaQuery.of(context).size.height * 0.2,
             width: MediaQuery.of(context).size.width * 1.0,
             margin: EdgeInsets.only(left: 10, right: MediaQuery.of(context).size.width * 0.05, top: 10),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: Colors.white, border: Border.all(color: Color(0xFFC4C4C4), width: 1)),
@@ -51,10 +51,10 @@ class CourierScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                 Container(width: MediaQuery.of(context).size.width * 0.6, child: Text("Pickup or Drop any items", maxLines: 3, style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold),)),
-                SizedBox(height: 16,),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.04,),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  child: Container(height: 34, width: MediaQuery.of(context).size.width * 0.4, decoration: BoxDecoration(color: Color(0xFF134DA5), borderRadius: BorderRadius.circular(10)), child: Center(child: Text("Temporarily Unavailable", style: TextStyle(fontSize: 16.0, color: Colors.white),)))
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: Container(height: 34, width: MediaQuery.of(context).size.width * 0.7, decoration: BoxDecoration(color: Color(0xFF134DA5), borderRadius: BorderRadius.circular(10)), child: Center(child: Text("Temporarily Unavailable", style: TextStyle(fontSize: 15.0, color: Colors.white),)))
                   // ElevatedButton(onPressed: (){
                                     
                   //                   // Navigator.pop(context);

@@ -54,7 +54,7 @@ class _LayoutHomeState extends State<LayoutHome> {
     },
     {
       'categoryName': "Fruits and \nVegetables",
-      'categoryParam': 'frits',
+      'categoryParam': 'fruits',
       'categoryImage': 'Assets/Images/frtsVeg.jpeg'
     },
     {

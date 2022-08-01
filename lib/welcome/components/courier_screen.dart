@@ -51,13 +51,14 @@ class CourierScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                 Container(width: MediaQuery.of(context).size.width * 0.6, child: Text("Pickup or Drop any items", maxLines: 3, style: TextStyle(color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.bold),)),
-                SizedBox(height: 10,),
+                SizedBox(height: 16,),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.6,
-                  child: ElevatedButton(onPressed: (){
+                  child: Container(height: 34, width: MediaQuery.of(context).size.width * 0.4, decoration: BoxDecoration(color: Color(0xFF134DA5), borderRadius: BorderRadius.circular(10)), child: Center(child: Text("Temporarily Unavailable", style: TextStyle(fontSize: 16.0, color: Colors.white),)))
+                  // ElevatedButton(onPressed: (){
                                     
-                                    // Navigator.pop(context);
-                                  }, child: Text("Temporarily Unavailable", style: TextStyle(fontSize: 16.0),), style: ElevatedButton.styleFrom(primary: Color(0xFF134DA5)),),
+                  //                   // Navigator.pop(context);
+                  //                 }, child: Text("Temporarily Unavailable", style: TextStyle(fontSize: 16.0),), style: ElevatedButton.styleFrom(primary: Color(0xFF134DA5)),),
                 )
               ]),
             ),
@@ -65,10 +66,11 @@ class CourierScreen extends StatelessWidget {
           SizedBox(height: MediaQuery.of(context).size.height * 0.25,),
           Container(
                   width: MediaQuery.of(context).size.width * 0.9,
-                  child: ElevatedButton(onPressed: (){
+                  child: Container(height: 40, width: MediaQuery.of(context).size.width * 0.4, decoration: BoxDecoration(color: Color(0xFF134DA5), borderRadius: BorderRadius.circular(10)), child: Center(child: Text("Confirm Order", style: TextStyle(fontSize: 16.0, color: Colors.white),)))
+                  // ElevatedButton(onPressed: (){
                                     
-                                    // Navigator.pop(context);
-                                  }, child: Text("Confirm Order", style: TextStyle(fontSize: 16.0),), style: ElevatedButton.styleFrom(primary: Color(0xFF134DA5)),),
+                  //                   // Navigator.pop(context);
+                  //                 }, child: Text("Confirm Order", style: TextStyle(fontSize: 16.0),), style: ElevatedButton.styleFrom(primary: Color(0xFF134DA5)),),
                 )
             ],
           ),

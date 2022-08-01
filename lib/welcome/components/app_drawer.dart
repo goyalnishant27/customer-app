@@ -52,12 +52,12 @@ class _AppDrawerState extends State<AppDrawer> {
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
               Text("Hey there!", style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
-              SizedBox(height: 10,),
+              SizedBox(height: 16,),
               Row(
                 children: [
-                  Icon(Icons.phone, size: 15,),
-                  SizedBox(width: 10,),
-                  Text("$mobileNo"),
+                  // Icon(Icons.phone, size: 15,),
+                  // SizedBox(width: 10,),
+                  Text("Please LogIn", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
                 ],
               )
             ],

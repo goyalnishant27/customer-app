@@ -21,10 +21,7 @@ class OffersScreen extends StatelessWidget {
               SizedBox(height: 10,),
               Container(width: MediaQuery.of(context).size.width * 0.5, child: Text("You can still order directly from the stores and check ongoing coupons", maxLines: 3, style: TextStyle(color: Color(0xFF134DA5), fontSize: 16.0, fontWeight: FontWeight.normal))),
               SizedBox(height: 10,),
-              ElevatedButton(onPressed: (){
-                                
-                                // Navigator.pop(context);
-                              }, child: Text("See Local Stores", style: TextStyle(fontSize: 16.0),), style: ElevatedButton.styleFrom(primary: Color(0xFF134DA5)),)
+              Container(height: 30, width: MediaQuery.of(context).size.width * 0.4, decoration: BoxDecoration(color: Color(0xFF134DA5), borderRadius: BorderRadius.circular(10)), child: Center(child: Text("See Local Stores", style: TextStyle(fontSize: 16.0, color: Colors.white),)))
             ]),
           ),
         )

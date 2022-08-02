@@ -42,6 +42,7 @@ class _AppDrawerState extends State<AppDrawer> {
       
   @override
   Widget build(BuildContext context) {
+    print(mobileNo);
     return Drawer(
       child: ListView(children: [
         Container(
@@ -57,7 +58,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 children: [
                   // Icon(Icons.phone, size: 15,),
                   // SizedBox(width: 10,),
-                  Text("Please LogIn", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
+                  Text(mobileNo == null ? "Please LogIn" : "$mobileNo", style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),),
                 ],
               )
             ],
@@ -155,10 +156,13 @@ class _AppDrawerState extends State<AppDrawer> {
             ],
           )),),
           SizedBox(height: MediaQuery.of(context).size.height * 0.3,),
-           Container(
+            mobileNo != null ? Container(
              margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.28),
              child: ListTile(
                      title: GestureDetector(onTap: () async {
+                       setState(() {
+                         mobileNo = null;
+                       });
               final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                                   sharedPreferences.clear();
                                   widget.checkUserController.checkUser(false);
@@ -170,7 +174,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ],
                      )),
                    ),
-           ),
+           ) : SizedBox(),
       ]),
     );
   }

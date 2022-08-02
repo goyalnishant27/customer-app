@@ -33,7 +33,7 @@ class _LayoutHomeState extends State<LayoutHome> {
 
   var categoryList = [
     {
-      'categoryName': "Restaurent",
+      'categoryName': "Restaurant",
       'categoryParam': 'res',
       'categoryImage': 'Assets/Images/res.jpeg'
     },
@@ -257,7 +257,7 @@ class _LayoutHomeState extends State<LayoutHome> {
                 SizedBox(height: 20),
                 
                 SizedBox(height: 20),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.47,
+              SizedBox(height: MediaQuery.of(context).size.height * 0.5,
                 child: Container(
                   margin: EdgeInsets.only(left: 10, right: 10),
                   child: GridView.builder(physics: NeverScrollableScrollPhysics(),

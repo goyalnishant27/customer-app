@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vyavsay/all_screens.dart';
 import 'package:vyavsay/layout_home.dart';
 import 'package:vyavsay/welcome/components/welcome_button.dart';
 
@@ -56,7 +57,7 @@ class _OTPPageState extends State<OTPPage> {
                     MaterialPageRoute(
                         builder:
                             (context) =>
-                            LayoutHome()));
+                            AllScreens()));
     }else{
       Get.snackbar("Login Failed", "Entered Wrong Otp", snackPosition: SnackPosition.BOTTOM, duration: Duration(seconds: 2));
     }
@@ -71,19 +72,24 @@ class _OTPPageState extends State<OTPPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.h),
         child: AppBar(
-          leading: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 20,
-                ),
-              ],
-            ),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
+          leading: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 20,
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
             ),
           ),
           elevation: 0,
